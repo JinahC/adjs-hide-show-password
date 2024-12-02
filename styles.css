@@ -12,7 +12,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: sans-serif;
+    padding: 30px;
     background: #efefef;
 }
 
@@ -33,10 +33,27 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     height: 70px;
     border-radius: 15px;
     padding: 20px;
+    transition: all 0.3s ease-in-out;
+
+    &.show-password {
+        transition: all 0.3s ease-in-out;
+        background-color: var(--indigo);
+
+        .input-password__lock-icon {
+            svg {
+                fill: var(--teal);
+            }
+        }
+
+        .input-password__input {
+            color: white;
+        }
+    }
 }
 
 .input-password__lock-icon {
@@ -55,6 +72,7 @@ body {
     background-color: transparent;
     color: var(--indigo);
     font-size: 24px;
+    font-family: monospace;
     width: 100%;
     outline: none;
 }
