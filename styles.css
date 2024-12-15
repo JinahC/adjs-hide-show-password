@@ -13,6 +13,8 @@ body {
     --teal: #26C9C3;
     --indigo: #191349;
 
+    --transition-time: 0.35s;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,10 +45,10 @@ body {
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 
     &.show-password {
         transition: all 0.3s ease-in-out;
-        background-color: var(--indigo);
 
         .input-password__lock-icon {
             svg {
@@ -59,16 +61,21 @@ body {
         }
 
         .input-password__toggle {
+            &::after {
+                transform: scale(15, 7);
+                transition: transform var(--transition-time) ease-out;
+            }
+
             svg {
                 &#top-eye {
                     transform: translate(-50%, -50%) rotateX(-180deg);
-                    transition: transform 0.35s ease-in-out;
+                    transition: transform var(--transition-time) ease-in-out;
                     transform-origin: center 30px;
                 }
 
                 .iris {
                     transform: scaleY(2);
-                    transition: transform 0.35s ease-in-out;
+                    transition: transform var(--transition-time) ease-in-out;
                 }
             }
         }
@@ -78,6 +85,8 @@ body {
 .input-password__lock-icon {
     padding-right: 15px;
     border-right: 1px solid #fff;
+    position: relative;
+    z-index: 1;
 
     svg {
         width: 50px;
@@ -94,6 +103,8 @@ body {
     font-family: monospace;
     width: 100%;
     outline: none;
+    position: relative;
+    z-index: 1;
 }
 
 .input-password__toggle {
@@ -106,6 +117,20 @@ body {
     width: 110px;
     height: 70px;
     position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--indigo);
+        border-radius: 50%;
+        z-index: -1;
+        transition: transform var(--transition-time) ease-in-out;
+
+    }
     
     svg {
         width: 45px;
@@ -118,7 +143,7 @@ body {
         transform: translate(-50%, -50%);
 
         .iris {
-            transition: transform 0.35s ease-in-out;
+            transition: transform var(--transition-time) ease-in-out;
         }
     }
 }
